@@ -2,22 +2,31 @@
 
 namespace Database\Seeders;
 
+use App\Models\Task;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
-{
+class DatabaseSeeder extends Seeder {
     /**
      * Seed the application's database.
      */
-    public function run(): void
-    {
-        // User::factory(10)->create();
+    public function run(): void {
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $firstUser = User::create([
+            'name' => 'Yahia Elsayed',
+            'email' => 'yahia@yahiaelsayed.com',
+            'password' => bcrypt('password'),
         ]);
+
+        Task::factory(100)->create([
+            'user_id' => $firstUser->id,
+        ]);
+
+        User::factory(99)->create()->each(function ($user) {
+            Task::factory(100)->create([
+                'user_id' => $user->id,
+            ]);
+        });
     }
 }
