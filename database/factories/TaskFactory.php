@@ -16,7 +16,7 @@ class TaskFactory extends Factory {
      */
     public function definition(): array {
         return [
-            'title' => fake()->title,
+            'title' => fake()->sentence,
             'description' => fake()->paragraphs(2, true),
             'status' => fake()->randomElement(Task::$status),
             'priorty' => fake()->randomElement(Task::$priorty),

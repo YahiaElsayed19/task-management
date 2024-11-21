@@ -34,7 +34,7 @@ class User extends Authenticatable {
     ];
 
     public function tasks(): HasMany {
-        return $this->hasmMany(Task::class);
+        return $this->hasMany(Task::class);
     }
 
     /**
